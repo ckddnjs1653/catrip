@@ -8,9 +8,9 @@ import org.junit.Test;
 public class MysqlConnectTest {
 
 	 private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	    private static final String DBURL ="jdbc:mysql://localhost:3306/catrip";
+	    private static final String DBURL ="jdbc:mysql://localhost:3306/caTrip";
 	    private static final String DBID = "root";
-	    private static final String DBPW = "root";
+	    private static final String DBPW = "1234";
 	    
 	    // DB 연결 메서드
 	    // @Test : 테스트할 내용을 메서드 안에 작성함

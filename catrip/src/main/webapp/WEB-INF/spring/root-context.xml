@@ -12,9 +12,9 @@
 		<!-- DataSource : DB 연결 정보 객체 -->
 		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-			<property name="url" value="jdbc:mysql://localhost:3306/catrip"/>
+			<property name="url" value="jdbc:mysql://localhost:3306/caTrip"/>
 			<property name="username" value="root" />
-			<property name="password" value="root" />
+			<property name="password" value="1234" />
 		</bean>
 		<!-- DataSource : DB 연결 정보 객체 -->
 		
