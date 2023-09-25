@@ -1,5 +1,19 @@
 package com.ct.service;
 
-public class MemberServiceImpl {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.ct.domain.MemberVO;
+import com.ct.persistence.MemberDAO;
+
+@Service
+public class MemberServiceImpl implements MemberService{
+
+	@Autowired
+	private MemberDAO mdao;
+	
+	@Override
+	public void insertMember(MemberVO vo) throws Exception{
+		mdao.insertMember(vo); 
+	}
 }
