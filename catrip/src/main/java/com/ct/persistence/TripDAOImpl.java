@@ -1,5 +1,8 @@
 package com.ct.persistence;
 
-public class TripDAOImpl {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class TripDAOImpl implements TripDAO {
 
 }
