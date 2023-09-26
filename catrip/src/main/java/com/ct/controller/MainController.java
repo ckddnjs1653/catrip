@@ -17,7 +17,7 @@ import com.ct.domain.MemberVO;
 import com.ct.service.MemberService;
 
 @Controller
-@RequestMapping(value="/*")
+@RequestMapping(value = "/*")
 public class MainController {
 	
 	@Autowired
@@ -27,17 +27,11 @@ public class MainController {
 	
 	// 메인페이지
 	// http://localhost:8080/main
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	@RequestMapping(value = "/main")
 	public void mainGET() {
 	    logger.debug("mainGET() 호출");
-
-	    logger.debug("main.jsp페이지 이동");
-
-
+	    logger.debug("main.jsp 페이지 이동");
 	}	
-	
-
-	
 	
 	// 회원가입 처리 - 사용자 정보 처리
 	@RequestMapping(value = "/join", method = RequestMethod.POST)

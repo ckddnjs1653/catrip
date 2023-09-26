@@ -9,16 +9,6 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
-		<!-- HikariCP로 대체(= 주석처리) -->
-		<!-- DataSource : DB 연결 정보 객체 -->
-		<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-			<property name="url" value="jdbc:mysql://localhost:3306/caTrip"/>
-			<property name="username" value="root" />
-			<property name="password" value="1234" />
-		</bean> -->
-		<!-- DataSource : DB 연결 정보 객체 -->
-		
 		<!-- HikariCP 설정 정보 -->
 		<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 			<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
@@ -27,6 +17,7 @@
 			<property name="password" value="1234" />
 		</bean>
 		<!-- HikariCP 설정 정보 -->
+		
 		
 		<!-- HikariCP DataSource : 커넥션풀 DB 연결 정보 객체 -->
 		<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
@@ -49,6 +40,6 @@
 		<!-- SqlSessionTemplate : DB 연결, mybatis 설정, 매퍼설정(SQL 실행), DB 종료 -->
 		
 		<!-- 외부 객체 등록 -->
-		<context:component-scan base-package="com.ct.persistence" />
-		<context:component-scan base-package="com.ct.service" />
+		<context:component-scan base-package="com.ct.persistence"></context:component-scan>
+		<context:component-scan base-package="com.ct.service"></context:component-scan>
 </beans>
