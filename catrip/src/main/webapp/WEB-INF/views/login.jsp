@@ -8,5 +8,15 @@
 </head>
 <body>
 
+<fieldset>
+	<form action="" method="post">
+		아이디 : <input type="text" name="id"> <br>
+		비밀번호 : <input type="password" name="pw">
+		<hr>
+		<input type="button" value="회원가입" onclick="location.href='/join';">
+		<input type="submit" value="로그인">
+	</form>
+</fieldset>
+
 </body>
 </html>
