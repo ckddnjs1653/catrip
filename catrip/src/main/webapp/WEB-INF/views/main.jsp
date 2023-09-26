@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>caTrip</title>
 </head>
 <body>
+	<h1>caTrip 메인</h1>
 
 	<form action="./join" method="post">
 		<input type="submit" value="회원가입">

@@ -12,14 +12,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ct.controller.MainController;
+
 import com.ct.domain.MemberVO;
 import com.ct.service.MemberService;
 
 @Controller
-@RequestMapping(value="/catrip/*")
+@RequestMapping(value="/*")
 public class MainController {
-
+	
+	@Autowired
+	private MemberService m_service;
+	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+	
+	// 메인페이지
+	// http://localhost:8080/main
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public void mainGET() {
+	    logger.debug("mainGET() 호출");
+
+	    logger.debug("main.jsp페이지 이동");
+
+
+	}	
+	
 
 	@Autowired
 	private MemberService mService;
@@ -67,5 +83,6 @@ public class MainController {
 			return "redirect:/login";
 		}
 	}
+
 	
 }
