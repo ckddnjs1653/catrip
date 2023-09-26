@@ -1,5 +1,8 @@
 package com.ct.persistence;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,4 +27,21 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		SqlSession.insert(NAMESPACE+".insertMember",vo);
 	}
+
+	// 로그인
+	@Override
+	public MemberVO loginMember(MemberVO vo) {
+		
+		return SqlSession.selectOne(NAMESPACE + ".login", vo);
+	}
+
+	@Override
+	public MemberVO loginMember(String id, String pw){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		params.put("pw", pw);
+		return SqlSession.selectOne(NAMESPACE + ".login", params);
+	}
+	
+	
 }

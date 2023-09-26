@@ -8,5 +8,9 @@
 </head>
 <body>
 
+	<form action="./join" method="post">
+		<input type="submit" value="회원가입">
+	</form>
+
 </body>
 </html>
