@@ -8,9 +8,9 @@ public interface MemberDAO {
 	public void insertMember(MemberVO vo) throws Exception;
 	
 	//로그인
-	public MemberVO loginMember(MemberVO vo) throws Exception;
+	public MemberVO loginMember(MemberVO vo);
 	
-	public MemberVO loginMember(String id,String pw) throws Exception;
+	public MemberVO loginMember(String id,String pw);
 	
 	
 }

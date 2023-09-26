@@ -16,15 +16,13 @@ public class MemberServiceImpl implements MemberService{
 	public void insertMember(MemberVO vo) throws Exception{
 		mdao.insertMember(vo); 
 	}
-
+	
 	@Override
-	public MemberVO loginMember(MemberVO vo) {
-		
-		MemberVO result = mdao.loginMember(vo);
-		
-		return result;
-	}
-	
-	
+    public MemberVO loginMember(MemberVO vo) {
+
+        MemberVO result = mdao.loginMember(vo);
+
+        return result;
+    }
 	
 }

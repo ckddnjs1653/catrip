@@ -21,7 +21,7 @@ import com.ct.service.MemberService;
 public class MainController {
 	
 	@Autowired
-	private MemberService m_service;
+	private MemberService mService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -37,8 +37,7 @@ public class MainController {
 	}	
 	
 
-	@Autowired
-	private MemberService mService;
+	
 	
 	// 회원가입 처리 - 사용자 정보 처리
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
