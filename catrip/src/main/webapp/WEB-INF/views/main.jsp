@@ -8,10 +8,10 @@
 </head>
 <body>
 	<h1>caTrip 메인</h1>
-	
-	<form action="/main" method="get">
-    	<input type="submit" value="회원가입">
+
+	<form action="./join" method="post">
+		<input type="submit" value="회원가입">
 	</form>
-	
+
 </body>
 </html>
