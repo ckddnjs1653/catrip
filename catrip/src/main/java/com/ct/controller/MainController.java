@@ -34,6 +34,15 @@ public class MainController {
 	}	
 	
 	// 회원가입 처리 - 사용자 정보 처리
+	// http://localhost:8080/join
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String memberJoin() {
+		logger.debug("memberJoinGET() 호출");
+		logger.debug("/member/MemberJoinGET.jsp 뷰페이지 연결(자동)");
+		
+		return "join"; // 연결되어있는 뷰 호출됨
+		
+	}
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String MemberJoinPOST(HttpServletRequest request, MemberVO vo) throws Exception {
 														   // ⬇️

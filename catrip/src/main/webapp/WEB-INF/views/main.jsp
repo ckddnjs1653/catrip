@@ -9,7 +9,7 @@
 <body>
 	<h1>caTrip 메인</h1>
 
-	<form action="./join" method="post">
+	<form action="./join" method="get">
 		<input type="submit" value="회원가입">
 	</form>
 
