@@ -1,5 +1,7 @@
 package com.ct.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ct.controller.MainController;
 
 import com.ct.domain.MemberVO;
+import com.ct.domain.TripVO;
 import com.ct.service.MemberService;
+import com.ct.service.TripService;
 
 @Controller
 @RequestMapping(value = "/*")
@@ -22,6 +26,9 @@ public class MainController {
 	
 	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	private TripService tService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -85,6 +92,40 @@ public class MainController {
 			return "redirect:/login";
 		}
 	}
+	
+	// ========== 애령 ==========
+	// 게시판2
+	@RequestMapping(value = "/board2")
+	public void board2() throws Exception {
+	    logger.debug("board2.jsp 페이지로 이동");
+	}
+	
+	// 글쓰기(GET)
+	@RequestMapping(value = "/regist2", method = RequestMethod.GET)
+	public void regist2() throws Exception {
+	    logger.debug("regist2.jsp 페이지로 이동");
+	}
+	
+	// 글쓰기(POST)
+	@RequestMapping(value = "/regist2", method = RequestMethod.POST)
+	public String regist2POST(TripVO vo) throws Exception {
+		tService.regist2POST(vo);
+		return "redirect:/board2";
+	}
+	
+	// 게시글 조회
+	@RequestMapping(value = "/board2", method = RequestMethod.GET)
+	public void boardList(Model model) throws Exception {
+		
+		List<TripVO> boardList = tService.getboardList();
+		model.addAttribute("boardList", boardList);
+		
+//		return "/board2";
+	}
+	
+	
+	// ========== 애령 ==========
+	
 
 	
 }

@@ -18,5 +18,19 @@
 		where id = #{id} and pw = #{pw}
 	</select>
 	<!-- 로그인 -->
+	
+	<!-- 여행지 글쓰기 -->
+	<insert id="regist2">
+		insert into trip(title, t_content) 
+		values(#{title}, #{t_content})
+	</insert>
+	<!-- 여행지 글쓰기 -->
+	
+	<!-- 여행지 게시판 글목록 조회 -->
+	<select id="board2" resultType="com.ct.domain.TripVO">
+		select * from trip
+	</select>
+	<!-- 여행지 게시판 글목록 조회 -->
+	
   
   </mapper>

@@ -1,5 +1,7 @@
 package com.ct.domain;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 @Data
@@ -14,5 +16,7 @@ public class TripVO {
 	private String t_content;
 	private String t_image;
 	private String t_hot;
+	private String title;
+	private Date regdate;
 	
 }
