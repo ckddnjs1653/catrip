@@ -12,6 +12,9 @@
 	<form action="./join" method="get">
 		<input type="submit" value="회원가입">
 	</form>
+	<form action="./board2">
+		<input type="button" value="게시판2" onclick="location.href='board2';">
+	</form>
 
 </body>
 </html>
