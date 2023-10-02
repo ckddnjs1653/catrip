@@ -1,5 +1,7 @@
 package com.ct.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ct.controller.MainController;
-
+import com.ct.domain.BoardVO;
 import com.ct.domain.MemberVO;
+import com.ct.service.BoardService;
 import com.ct.service.MemberService;
 
 @Controller
@@ -22,6 +25,9 @@ public class MainController {
 	
 	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	private BoardService bService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -86,5 +92,31 @@ public class MainController {
 		}
 	}
 
+	// http://localhost:8080/board1
+	// 게시판1 
+	@RequestMapping(value ="/board1",method = RequestMethod.GET)
+	public void board1( Model model) throws Exception{
+		
+		List<BoardVO> board_list = bService.boardList();
+		
+		model.addAttribute("board_list",board_list);
+		
+	}
+	// http://localhost:8080/regist1
+	//글쓰기(GET)
+	@RequestMapping(value="/regist1",method = RequestMethod.GET)
+	public String registGET1(BoardVO vo) throws Exception{
+		
+		return "regist1";
+	}
+	
+	//글쓰기(POST)
+	@RequestMapping(value ="/regist1",method=RequestMethod.POST)
+	public String registPOST1(BoardVO vo) throws Exception{
+		
+		bService.insertBoard(vo);
+		
+		return "redirect:/board1";
+	}
 	
 }

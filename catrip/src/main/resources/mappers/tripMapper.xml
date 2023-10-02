@@ -5,6 +5,8 @@
   
   <mapper namespace="com.ct.mapper.tripMapper">
   
+  
+  	
  	<!-- 회원가입 -->
  	<insert id="insertMember">
  	insert into member(id, pw, name, email, tel, regdate)
@@ -18,5 +20,19 @@
 		where id = #{id} and pw = #{pw}
 	</select>
 	<!-- 로그인 -->
+  
+  
+  	<!-- 글 목록 조회1  -->
+  	<select id="boardList" resultType="com.ct.domain.BoardVO">
+  		select * from board
+  	</select>
+  	<!-- 글 목록 조회1  -->
+  	
+  	<!-- 글쓰기 -->
+  	<insert id="regist1">
+  		insert into board( subject, content) 
+		values(#{subject}, #{content})
+  	</insert>
+  	<!-- 글쓰기 -->
   
   </mapper>

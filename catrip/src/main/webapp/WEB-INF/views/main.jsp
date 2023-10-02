@@ -13,5 +13,10 @@
 		<input type="submit" value="회원가입">
 	</form>
 
+	<hr>
+	
+	<form action="./board1" method="get">
+		<input type="submit" value="게시판">
+	</form>
 </body>
 </html>

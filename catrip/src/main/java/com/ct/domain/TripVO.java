@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class TripVO {
 
+	private int t_bno;
 	private String t_city;
 	private String t_name;
 	private String t_foreign;
