@@ -14,12 +14,14 @@
 			<tr>
 				<th>제목</th>
 				<th>내용</th>
+				<th>조회수</th>
 				<th>작성일</th>
 			</tr>
 			<c:forEach var="vo" items="${boardList }">
 				<tr>
-					<td>${vo.title }</td>
+					<td><a href="/read2?bno=${vo.t_bno }">${vo.title }</a></td>
 					<td>${vo.t_content }</td>
+					<td></td>
 					<td>${vo.regdate }</td>
 				</tr>
 			</c:forEach>

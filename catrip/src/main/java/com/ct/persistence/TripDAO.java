@@ -11,6 +11,8 @@ public interface TripDAO {
 	
 	// 글조회
 	public List<TripVO> getboardList() throws Exception;
-		
+	
+	// 글 내용보기
+	public TripVO getBorad2(Integer bno) throws Exception;
 
 }

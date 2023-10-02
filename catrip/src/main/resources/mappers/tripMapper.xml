@@ -34,6 +34,12 @@
 	</select>
 	<!-- 여행지 게시판 글목록 조회 -->
 	
+	<!-- 글 내용보기 -->
+	<select id="getBoard2" resultType="com.ct.domain.TripVO">
+		select * from trip
+		where t_bno = #{bno}
+	</select>
+	<!-- 글 내용보기 -->
   
   
   	<!-- 글 목록 조회1  -->

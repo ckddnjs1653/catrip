@@ -20,7 +20,8 @@
 		
 		
 		<!-- HikariCP DataSource : 커넥션풀 DB 연결 정보 객체 -->
-		<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" 
+							  destroy-method="close">
 			<constructor-arg ref="hikariConfig" />
 		</bean>
 		<!-- HikariCP DataSource : 커넥션풀 DB 연결 정보 객체 -->

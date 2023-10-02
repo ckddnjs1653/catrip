@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ct.controller.MainController;
 import com.ct.domain.BoardVO;
@@ -100,6 +101,7 @@ public class MainController {
 	
 	// ========== 애령 ==========
 	// 게시판2
+	// http://localhost:8080/board2
 	@RequestMapping(value = "/board2")
 	public void board2() throws Exception {
 	    logger.debug("board2.jsp 페이지로 이동");
@@ -123,13 +125,24 @@ public class MainController {
 	public void boardList(Model model) throws Exception {
 		
 		List<TripVO> boardList = tService.getboardList();
+		logger.debug("boardList : " + boardList);
 		model.addAttribute("boardList", boardList);
 		
 //		return "/board2";
 	}
 	
+	// 글 상세보기
+	@RequestMapping(value = "/read2", method = RequestMethod.GET)
+	public void read2GET(Model model, @RequestParam("bno") int bno) throws Exception {
+		
+		logger.debug("bno : " + bno);
+		
+		tService.getBorad2(bno);
+		model.addAttribute("vo", tService.getBorad2(bno));
+		
+	}
 	
-	// ========== 애령 ==========
+	// ========== 애령 - 끝 ==========
 	
 
 	// http://localhost:8080/board1
