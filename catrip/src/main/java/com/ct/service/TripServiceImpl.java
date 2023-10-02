@@ -24,6 +24,11 @@ public class TripServiceImpl implements TripService {
 	public List<TripVO> getboardList() throws Exception {
 		return tdao.getboardList();
 	}
+
+	@Override
+	public TripVO getBorad2(Integer bno) throws Exception {
+		return tdao.getBorad2(bno);
+	}
 	
 	
 	

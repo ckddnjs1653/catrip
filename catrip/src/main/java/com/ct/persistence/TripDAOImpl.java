@@ -23,7 +23,7 @@ public class TripDAOImpl implements TripDAO {
 	@Override
 	public void regist2POST(TripVO vo) throws Exception {
 		logger.debug("regist2POST DAOImpl 호출");
-		int result = sqlSession.insert(NAMESPACE + ".regist2", vo);
+		int result = sqlSession.insert(NAMESPACE  + ".regist2", vo);
 		
 		if(result != 0)
 			logger.debug("글쓰기 완료");
@@ -33,8 +33,16 @@ public class TripDAOImpl implements TripDAO {
 	@Override
 	public List<TripVO> getboardList() throws Exception {
 		
-		return sqlSession.selectList(NAMESPACE+".board2");
+		return sqlSession.selectList(NAMESPACE +".board2");
 		
+	}
+
+	@Override
+	public TripVO getBorad2(Integer bno) throws Exception {
+		
+		logger.debug("체크 : " + bno);
+		
+		return sqlSession.selectOne(NAMESPACE + ".getBoard2", bno);
 	}
 	
 	
