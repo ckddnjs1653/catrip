@@ -31,6 +31,7 @@
 	<!-- 여행지 게시판 글목록 조회 -->
 	<select id="board2" resultType="com.ct.domain.TripVO">
 		select * from trip
+		order by regdate desc;
 	</select>
 	<!-- 여행지 게시판 글목록 조회 -->
 	
@@ -40,6 +41,32 @@
 		where t_bno = #{bno}
 	</select>
 	<!-- 글 내용보기 -->
+	
+	<!-- 게시판2 조회 -->
+	<update id="viewcnt2">
+		update trip set viewcnt = viewcnt+1
+		where t_bno = #{bno}
+	</update>
+	<!-- 게시판2 조회 -->
+	
+	<!-- 게시판2 수정 -->
+	<select id="modify2GET" resultType="com.ct.domain.TripVO">
+		select * from trip
+		where t_bno = #{bno}
+	</select>
+	<update id="modify2POST">
+		update trip
+		set title = #{vo.title}, t_content = #{vo.t_content}
+		where t_bno = #{bno}
+	</update>
+	<!-- 게시판2 수정 -->
+	
+	<!-- 게시판2 삭제 -->
+	<delete id="delete2">
+		delete from trip
+		where t_bno = #{bno}
+	</delete>
+	<!-- 게시판2 삭제 -->
   
   
   	<!-- 글 목록 조회1  -->

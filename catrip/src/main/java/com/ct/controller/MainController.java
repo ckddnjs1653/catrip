@@ -1,6 +1,8 @@
 package com.ct.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -134,13 +136,47 @@ public class MainController {
 	// 글 상세보기
 	@RequestMapping(value = "/read2", method = RequestMethod.GET)
 	public void read2GET(Model model, @RequestParam("bno") int bno) throws Exception {
-		
 		logger.debug("bno : " + bno);
 		
 		tService.getBorad2(bno);
+		tService.viewcnt2(bno);
 		model.addAttribute("vo", tService.getBorad2(bno));
-		
 	}
+	
+	// 글 수정하기(GET)
+	@RequestMapping(value = "/modify2", method = RequestMethod.GET)
+	public void modify2GET(@RequestParam("bno") int bno, Model model) throws Exception {
+		logger.debug("글 수정 페이지로 이동");
+		
+		tService.modify2GET(bno);
+		model.addAttribute("vo", tService.modify2GET(bno));
+		
+		TripVO vo = tService.modify2GET(bno);
+		model.addAttribute("vo", vo);
+	}
+	
+	// 글 수정하기(POST)
+	@RequestMapping(value = "/modify2", method = RequestMethod.POST)
+	public String modify2POST(@RequestParam("bno") int bno, TripVO vo) throws Exception {
+		
+		Map<String, Object> data = new HashMap<>();
+	    data.put("bno", bno);
+	    data.put("vo", vo);
+		
+		logger.debug("글 수정하기(POST) : " + vo);
+		tService.modify2POST(data);
+		logger.debug("글 수정완료");
+		
+		return "redirect:/board2";
+	}
+	
+	// 글 삭제하기
+	@RequestMapping(value = "/delete2", method = RequestMethod.POST)
+	public String delete2(@RequestParam("bno") int bno) throws Exception {
+		tService.delete2(bno);
+		return "redirect:/board2";
+	}
+	
 	
 	// ========== 애령 - 끝 ==========
 	
