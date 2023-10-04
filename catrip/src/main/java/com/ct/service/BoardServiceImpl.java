@@ -27,6 +27,37 @@ public class BoardServiceImpl implements BoardService{
 		
 		bdao.insertBoard(vo);
 	}
+	// 글 상세내용 보기
+	@Override
+	public BoardVO read1Board(int b_bno) throws Exception {
+		
+		return bdao.read1Board(b_bno);
+	}
+
+	// 글 조회수 증가
+	@Override
+	public void updateCnt(int b_bno) throws Exception {
+
+		bdao.updateCnt(b_bno);
+	}
+
+	// 글 수정하
+	@Override
+	public void updateBoard(BoardVO bvo) throws Exception {
+
+		bdao.updateBoard(bvo);
+	}
+
+	// 글 삭제하기
+	@Override
+	public void deleteBoard1(int b_bno) throws Exception {
+
+		bdao.deleteBoard1(b_bno);
+	}
+
+	
+	
+	
 
 	
 	
