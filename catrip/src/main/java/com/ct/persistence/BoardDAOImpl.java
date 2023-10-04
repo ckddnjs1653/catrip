@@ -39,6 +39,40 @@ public class BoardDAOImpl implements BoardDAO{
 			logger.debug("글쓰기 완료");
 		}
 	}
+	
+	// 글 상세내용 보기
+	@Override
+	public BoardVO read1Board(int b_bno) throws Exception {
+		
+		return SqlSession.selectOne(NAMESPACE+".getBoard1",b_bno);
+	}
+
+	// 글 조회수 증가
+	@Override
+	public void updateCnt(int b_bno) throws Exception {
+
+		SqlSession.selectOne(NAMESPACE+".upCnt",b_bno);
+	}
+
+	// 글 수정하기
+	@Override
+	public void updateBoard(BoardVO bvo) throws Exception {
+		
+		SqlSession.update(NAMESPACE+".update1", bvo);
+		
+	}
+
+	// 글 삭제하기
+	@Override
+	public void deleteBoard1(int b_bno) throws Exception {
+		
+		SqlSession.delete(NAMESPACE+".delete1",b_bno);
+		
+	}
+
+	
+	
+	
 
 
 	

@@ -42,6 +42,7 @@
 	<!-- 글 내용보기 -->
   
   
+  
   	<!-- 글 목록 조회1  -->
   	<select id="boardList" resultType="com.ct.domain.BoardVO">
   		select * from board
@@ -54,5 +55,34 @@
 		values(#{subject}, #{content})
   	</insert>
   	<!-- 글쓰기 -->
+  	
+  	<!-- 글 상새내용 보기1 -->
+  	<select id="getBoard1" resultType="com.ct.domain.BoardVO">
+		select * from board
+		where b_bno = #{b_bno}
+	</select>
+  	<!-- 글 상새내용 보기1 -->
+  	
+  	<!-- 글 조회수 증가  -->
+  	<update id="upCnt">
+  		update board set cnt = cnt +1
+  		where b_bno = #{b_bno}
+  	</update>
+  	<!-- 글 조회수 증가  -->
+  	
+  	<!-- 글 수정하기  -->
+  	<update id="update1">
+  		update board 
+  		set subject = #{subject} , content = #{content}
+  		where b_bno = #{b_bno} 
+  	</update>
+  	<!-- 글 수정하기  -->
+  	
+  	<!-- 글 삭제하기 -->
+  	<delete id="delete1">
+  		delete from board
+  		where b_bno = #{b_bno}
+  	</delete>
+  	<!-- 글 삭제하기 -->
   
   </mapper>
