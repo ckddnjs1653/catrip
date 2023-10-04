@@ -1,6 +1,7 @@
 package com.ct.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,30 @@ public class TripServiceImpl implements TripService {
 	@Override
 	public TripVO getBorad2(Integer bno) throws Exception {
 		return tdao.getBorad2(bno);
+	}
+
+	@Override
+	public void viewcnt2(Integer bno) throws Exception {
+		tdao.viewcnt2(bno);
+		
+	}
+
+	@Override
+	public TripVO modify2GET(Integer bno) throws Exception {
+		return tdao.modify2GET(bno);
+		
+	}
+
+	@Override
+	public void modify2POST(Map<String, Object> data) throws Exception {
+		tdao.modify2POST(data);
+		
+	}
+
+	@Override
+	public void delete2(Integer bno) throws Exception {
+		tdao.delete2(bno);
+		
 	}
 	
 	
