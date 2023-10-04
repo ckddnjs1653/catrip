@@ -208,4 +208,41 @@ public class MainController {
 		return "redirect:/board1";
 	}
 	
+	// 글 상세보기 (조회수 증가)
+	@RequestMapping(value = "/read1", method = RequestMethod.GET)
+	public void read1GET(Model model, @RequestParam("b_bno") int b_bno ) throws Exception {
+		
+		logger.debug("b_bno : " + b_bno);
+			
+		bService.updateCnt(b_bno);
+		bService.read1Board(b_bno);
+		model.addAttribute("b_bno", bService.read1Board(b_bno));
+		
+	}
+	
+	// 글 수정하기 (GET)
+	@RequestMapping(value ="/modify1" ,method = RequestMethod.GET)
+	public void upBoardGet(@RequestParam("b_bno") int b_bno, Model model) throws Exception {
+		
+		BoardVO vo = bService.read1Board(b_bno);
+		model.addAttribute("vo", vo);
+	}
+	
+	// 글 수정하기(POST)
+	@RequestMapping(value ="/modify1" ,method = RequestMethod.POST)
+	public String upBoardPost(BoardVO bvo) throws Exception {
+		
+		bService.updateBoard(bvo);
+		return "redirect:/board1";
+	}
+	//글 삭제하기
+	@RequestMapping(value="/delete1" , method=RequestMethod.GET)
+	public String deleteBoardPOST(@RequestParam("b_bno") int b_bno) throws Exception{
+		
+		
+		bService.deleteBoard1(b_bno);
+		return "redirect:/board1";
+	}
+	
+	
 }

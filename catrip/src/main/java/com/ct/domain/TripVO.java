@@ -20,5 +20,6 @@ public class TripVO {
 	private String title;
 	private Date regdate;
 	private Integer viewcnt;
+
 	
 }
