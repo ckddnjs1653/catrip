@@ -208,5 +208,21 @@ public class MainController {
 		return "redirect:/board1";
 	}
 	
+	// 채팅
+	@RequestMapping(value="/chat" , method=RequestMethod.GET)
+    public String chat(Model model) {
+        // 사용자 정보 가져오기 (Spring Security를 사용하지 않고 예시로 구현)
+        String username = "guest"; // 예시로 사용자 이름을 "guest"로 설정
+
+        // 로깅 추가
+        System.out.println("==================================");
+        System.out.println("@ChatController, GET Chat / Username : " + username);
+
+        // 모델에 사용자 정보 추가
+        model.addAttribute("userid", username);
+
+        // 채팅 페이지로 이동 (View 이름을 반환)
+        return "chat"; 
+    }
 	
 }
