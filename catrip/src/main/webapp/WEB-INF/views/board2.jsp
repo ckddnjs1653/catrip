@@ -21,7 +21,7 @@
 				<tr>
 					<td><a href="/read2?bno=${vo.t_bno }">${vo.title }</a></td>
 					<td>${vo.t_content }</td>
-					<td></td>
+					<td>${vo.viewcnt }</td>
 					<td>${vo.regdate }</td>
 				</tr>
 			</c:forEach>
@@ -31,6 +31,7 @@
 	
 	<form action="./board2">
 		<input type="button" value="글쓰기" onclick="location.href='regist2';">
+		<input type="button" value="메인" onclick="location.href='main';">
 	</form>
 	
 	

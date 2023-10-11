@@ -1,6 +1,8 @@
 package com.ct.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -40,9 +42,43 @@ public class TripDAOImpl implements TripDAO {
 	@Override
 	public TripVO getBorad2(Integer bno) throws Exception {
 		
-		logger.debug("체크 : " + bno);
-		
 		return sqlSession.selectOne(NAMESPACE + ".getBoard2", bno);
+	}
+
+	@Override
+	public void viewcnt2(Integer bno) throws Exception {
+		
+		sqlSession.update(NAMESPACE + ".viewcnt2", bno);
+		
+	}
+
+	@Override
+	public TripVO modify2GET(Integer bno) throws Exception {
+		 return sqlSession.selectOne(NAMESPACE + ".modify2GET", bno);
+		
+	}
+
+	@Override
+	public void modify2POST(Map<String, Object> data) throws Exception {
+		
+		logger.debug("확인 : " + data);
+		
+		int result = sqlSession.update(NAMESPACE + ".modify2POST", data);
+		
+		if(result != 0) 
+			logger.debug("글 수정 완료");
+		
+			
+		
+	}
+
+	@Override
+	public void delete2(Integer bno) throws Exception {
+		int result = sqlSession.delete(NAMESPACE + ".delete2", bno);
+		
+		if(result != 0) 
+			logger.debug("글 삭제 완료");
+		
 	}
 	
 	

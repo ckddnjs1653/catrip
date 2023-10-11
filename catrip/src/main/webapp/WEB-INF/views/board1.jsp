@@ -35,7 +35,7 @@
 	<hr>
 	
 	<form action="./regist1" method="get">
-		<input type="submit" value="글쓰기">
+		<input type="button" onclick="location.href='regist1';" value="글쓰기">
 	</form>
 	
 	<hr>
