@@ -1,5 +1,6 @@
 package com.ct.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ct.domain.BoardVO;
+import com.ct.domain.PageVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -23,11 +25,43 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	// 게시판 글 목록 조회
 	@Override
-	public List<BoardVO> boardList() throws Exception {
+	public List<BoardVO> boardList(PageVO pvo) throws Exception {
 
-		
-		return SqlSession.selectList(NAMESPACE + ".boardList");
+		logger.debug("검색어xxxxxxxxxxxxxx");
+		return SqlSession.selectList(NAMESPACE + ".boardList",pvo);
 	}
+	
+	//게시판 목록 갯수
+		@Override
+		public int count() throws Exception {
+			
+			logger.debug("검색어xxxxxxxxxxxxxx");
+			return SqlSession.selectOne(NAMESPACE+".count");
+		}
+	
+	// 게시판 글 목록 조회 (+검색어)
+	@Override
+	public List<BoardVO> boardList(BoardVO vo ,PageVO pvo) throws Exception {
+		logger.debug("ㅇㅇㅇㅇㅇ1 " + pvo.getStartPage());
+		logger.debug("ㅇㅇㅇㅇㅇ2 " + pvo.getPageSize());
+		
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		data.put("subject", vo.getSubject());
+		data.put("startPage", pvo.getStartPage());
+		data.put("pageSize", pvo.getPageSize());
+		logger.debug("검색어ooooooooooo" + vo.getSubject());
+		return SqlSession.selectList(NAMESPACE+".boardSearch" ,data);
+	}
+	
+	//게시판 목록 갯수(+검색어)
+		@Override
+		public int count(BoardVO vo) throws Exception {
+			
+			HashMap<String, Object> data = new HashMap<String, Object>();
+			data.put("subject", vo.getSubject());
+			logger.debug("검색어ooooooooooo" + vo.getSubject());
+			return SqlSession.selectOne(NAMESPACE+".count1",data);
+		}
 	
 	// 글쓰기
 	@Override
@@ -69,6 +103,12 @@ public class BoardDAOImpl implements BoardDAO{
 		SqlSession.delete(NAMESPACE+".delete1",b_bno);
 		
 	}
+	
+	
+
+	
+
+	
 
 	
 	

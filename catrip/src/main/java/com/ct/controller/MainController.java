@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ct.controller.MainController;
 import com.ct.domain.BoardVO;
+import com.ct.domain.BottomPage;
 import com.ct.domain.MemberVO;
+import com.ct.domain.PageVO;
 import com.ct.service.BoardService;
 import com.ct.domain.TripVO;
 import com.ct.service.MemberService;
@@ -42,11 +45,31 @@ public class MainController {
 	
 	// 메인페이지
 	// http://localhost:8080/main
-	@RequestMapping(value = "/main")
-	public void mainGET() {
-	    logger.debug("mainGET() 호출");
-	    logger.debug("main.jsp 페이지 이동");
+	@RequestMapping(value = "/main" ,method = RequestMethod.GET)
+	public String mainGET(HttpSession session) {
+	   
+		
+		
+		MemberVO memberVO = (MemberVO) session.getAttribute("id");
+		
+		if(memberVO == null) {
+			  logger.debug("id 정보가 없습니다. 메인 화면으로 이동하지 않습니다.");
+		        return "redirect:/login";
+		}else {
+			return "/main";
+		}
+		
 	}	
+	
+	// 로그아웃 세션제어
+		@RequestMapping(value = "/logout", method = RequestMethod.GET)
+		public String logoutGET(HttpServletRequest request, HttpServletResponse response) {
+			logger.debug(" smLogoutGET(호출)@@@@@ ");
+			
+			 request.getSession().invalidate();
+			 
+			 return "redirect:/login";
+		}
 	
 	// 회원가입 처리 - 사용자 정보 처리
 	// http://localhost:8080/join
@@ -184,11 +207,42 @@ public class MainController {
 	// http://localhost:8080/board1
 	// 게시판1 
 	@RequestMapping(value ="/board1",method = RequestMethod.GET)
-	public void board1( Model model) throws Exception{
+	public void board1( Model model, BoardVO vo, PageVO pvo) throws Exception{
 		
-		List<BoardVO> board_list = bService.boardList();
+		if(vo.getSubject()  != null && !vo.getSubject().equals("")) {
+			int count = bService.count(vo);
+			List<BoardVO> board_List1 = bService.boardList(vo,pvo);
+			BottomPage bp = new BottomPage();
+            bp.setPageVO(pvo);
+            bp.setTotalCount(count);
+            model.addAttribute("bp",bp);
+            logger.debug("pvo : " + pvo);
+			logger.debug("검색엉ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+			logger.debug("board_List1@@@@@@@@@@@" + board_List1);
+			model.addAttribute("board_list",board_List1);
+			model.addAttribute("count",count);
+			model.addAttribute("vo",vo);
+			model.addAttribute("pvo",pvo);
+			
+		} else {
+			int count = bService.count();
+			List<BoardVO> board_list = bService.boardList(pvo);
+			BottomPage bp = new BottomPage();
+            bp.setPageVO(pvo);
+            bp.setTotalCount(count);
+            model.addAttribute("bp",bp);
+			logger.debug("검색어xxxxxxxxxxxx");
+			logger.debug("board_list@@@@@@@@" + board_list);
+			model.addAttribute("board_list",board_list);
+			model.addAttribute("count",count);
+			model.addAttribute("vo",vo);
+			model.addAttribute("pvo",pvo);
+		}
 		
-		model.addAttribute("board_list",board_list);
+		
+		
+		
+		
 		
 	}
 	// http://localhost:8080/regist1
