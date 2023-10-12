@@ -3,11 +3,21 @@ package com.ct.persistence;
 import java.util.List;
 
 import com.ct.domain.BoardVO;
+import com.ct.domain.PageVO;
 
 public interface BoardDAO {
 
 	// 게시판 목록 조회
-	public List<BoardVO> boardList() throws Exception;
+	public List<BoardVO> boardList(PageVO pvo) throws Exception;
+	
+	// 게시판 목록 갯수
+	public int count() throws Exception;
+	
+	// 게시판 목록 조회 (+검색어)
+	public List<BoardVO> boardList(BoardVO vo,PageVO pvo) throws Exception;
+	
+	// 게시판 목록 갯수(+검색어)
+	public int count(BoardVO vo) throws Exception;
 	
 	// 글쓰기
 	public void insertBoard(BoardVO vo) throws Exception;

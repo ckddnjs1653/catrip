@@ -71,13 +71,41 @@
   
   
   	<!-- 글 목록 조회1  -->
-  	<select id="boardList" resultType="com.ct.domain.BoardVO">
+  	<select id="boardList" resultType="com.ct.domain.BoardVO" >
   		select * from board
+  		limit #{startPage}, #{pageSize}
   	</select>
   	<!-- 글 목록 조회1  -->
   	
+  	<!-- 글 목록 갯수 -->
+  	<select id="count" resultType="int">
+  		select count(subject) from board
+  	</select>
+  	<!-- 글 목록 갯수 -->
+
+
+  	<!-- 글 목록 조회1 + 검색 -->
+  	<select id="boardSearch" resultType="com.ct.domain.BoardVO" parameterType="hashMap">
+  		select * from board
+  		<where>
+  		subject like concat ( '%' ,#{subject},'%' )
+  		</where>
+  		limit #{startPage}, #{pageSize}
+  	</select>
+  	<!-- 글 목록 조회1 + 검색 -->
+  	
+  	<!-- 글 목록 갯수 + 검색 -->
+  	<select id="count1" resultType="int" parameterType="hashMap">
+  		select count(*) from board
+  		<where>
+  		subject like concat ( '%' ,#{subject},'%' )
+  		</where>
+  	</select>
+  	<!-- 글 목록 갯수 + 검색 -->
+  	
+  	
   	<!-- 글쓰기 -->
-  	<insert id="regist1">
+  	<insert id="regist1" >
   		insert into board( subject, content) 
 		values(#{subject}, #{content})
   	</insert>

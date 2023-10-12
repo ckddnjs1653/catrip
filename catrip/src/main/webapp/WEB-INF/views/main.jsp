@@ -24,5 +24,11 @@
 	<form action="./board1" method="get">
 		<input type="submit" value="게시판">
 	</form>
+	
+	<hr>
+	
+	<form action="./logout" method="get">
+		<input type="submit" value="로그아웃">
+	</form>
 </body>
 </html>
