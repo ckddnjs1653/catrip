@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ct.domain.PageVO;
 import com.ct.domain.TripVO;
 import com.ct.persistence.MemberDAO;
 import com.ct.persistence.TripDAO;
@@ -22,8 +23,8 @@ public class TripServiceImpl implements TripService {
 	}
 
 	@Override
-	public List<TripVO> getboardList() throws Exception {
-		return tdao.getboardList();
+	public List<TripVO> getboardList(PageVO pvo) throws Exception {
+		return tdao.getboardList(pvo);
 	}
 
 	@Override
@@ -53,6 +54,21 @@ public class TripServiceImpl implements TripService {
 	public void delete2(Integer bno) throws Exception {
 		tdao.delete2(bno);
 		
+	}
+
+	@Override
+	public int count() throws Exception {
+		return tdao.count();
+	}
+
+	@Override
+	public List<TripVO> getboardList(TripVO vo, PageVO pvo) throws Exception {
+		return tdao.getboardList(vo, pvo);
+	}
+
+	@Override
+	public int count(TripVO vo) throws Exception {
+		return tdao.count(vo);
 	}
 	
 	

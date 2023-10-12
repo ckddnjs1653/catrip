@@ -13,5 +13,7 @@ public class BoardVO {
 	private int b_bno; 
 	private Date b_regdate;
 	private int cnt;
+	private int maxPerson;
+	private int personNum;
 	
 }

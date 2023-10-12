@@ -28,12 +28,23 @@
 	</insert>
 	<!-- 여행지 글쓰기 -->
 	
-	<!-- 여행지 게시판 글목록 조회 -->
+	<!-- 게시판2 글목록 조회(검색X) -->
 	<select id="board2" resultType="com.ct.domain.TripVO">
 		select * from trip
-		order by regdate desc;
+		order by regdate desc
+		limit #{startPage}, #{pageSize}
 	</select>
-	<!-- 여행지 게시판 글목록 조회 -->
+	<!-- 게시판2 글목록 조회(검색X) -->
+	
+	<!-- 게시판2 글목록 조회(검색O) -->
+	<select id="Search2" resultType="com.ct.domain.TripVO" parameterType="hashMap">
+		select * from trip
+		<where>
+  			title like concat('%', #{title},'%')
+  		</where>
+  			limit #{startPage}, #{pageSize}
+	</select>
+	<!-- 게시판2 글목록 조회(검색O) -->
 	
 	<!-- 글 내용보기 -->
 	<select id="getBoard2" resultType="com.ct.domain.TripVO">
@@ -67,6 +78,21 @@
 		where t_bno = #{bno}
 	</delete>
 	<!-- 게시판2 삭제 -->
+	
+	<!-- 게시판2 글 개수(검색X) -->
+	<select id="Cnt" resultType="int">
+		select count(*) from trip;
+	</select>
+	<!-- 게시판2 글 개수(검색X) -->
+	
+	<!-- 게시판2 글 개수(검색O) -->
+	<select id="Cnt2" resultType="int" parameterType="hashMap">
+		select count(*) from trip
+		<where>
+  			title like concat('%', #{title},'%')
+  		</where>
+	</select>
+	<!-- 게시판2 글 개수(검색O) -->
   
   
   
@@ -139,5 +165,6 @@
   		where b_bno = #{b_bno}
   	</delete>
   	<!-- 글 삭제하기 -->
+  	
   
   </mapper>

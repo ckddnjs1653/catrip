@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ct.domain.PageVO;
 import com.ct.domain.TripVO;
 
 @Repository
@@ -33,9 +34,9 @@ public class TripDAOImpl implements TripDAO {
 	}
 
 	@Override
-	public List<TripVO> getboardList() throws Exception {
+	public List<TripVO> getboardList(PageVO pvo) throws Exception {
 		
-		return sqlSession.selectList(NAMESPACE +".board2");
+		return sqlSession.selectList(NAMESPACE +".board2", pvo);
 		
 	}
 
@@ -68,8 +69,6 @@ public class TripDAOImpl implements TripDAO {
 		if(result != 0) 
 			logger.debug("글 수정 완료");
 		
-			
-		
 	}
 
 	@Override
@@ -79,6 +78,32 @@ public class TripDAOImpl implements TripDAO {
 		if(result != 0) 
 			logger.debug("글 삭제 완료");
 		
+	}
+
+	@Override
+	public int count() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".Cnt");
+	}
+
+	@Override
+	public List<TripVO> getboardList(TripVO vo, PageVO pvo) throws Exception {
+		
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		data.put("title", vo.getTitle());
+		data.put("startPage", pvo.getStartPage());
+		data.put("pageSize", pvo.getPageSize());
+		logger.debug("검색어 O : " + vo.getTitle());
+		
+		return sqlSession.selectList(NAMESPACE+".Search2", data);
+		
+	}
+
+	@Override
+	public int count(TripVO vo) throws Exception {
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		data.put("title", vo.getTitle());
+		
+		return sqlSession.selectOne(NAMESPACE + ".Cnt2", data);
 	}
 	
 	

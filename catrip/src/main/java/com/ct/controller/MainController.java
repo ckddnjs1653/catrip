@@ -127,9 +127,43 @@ public class MainController {
 	// ========== 애령 ==========
 	// 게시판2
 	// http://localhost:8080/board2
-	@RequestMapping(value = "/board2")
-	public void board2() throws Exception {
-	    logger.debug("board2.jsp 페이지로 이동");
+	// 게시글 조회
+	@RequestMapping(value = "/board2", method = RequestMethod.GET)
+	public void boardList(Model model, TripVO vo, PageVO pvo) throws Exception {
+		logger.debug("board2 GET 컨트롤러 호출");
+		if(vo.getTitle()  != null && !vo.getTitle().equals("")) {
+			logger.debug("검색어 ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+			int count = tService.count(vo);
+			List<TripVO> boardList = tService.getboardList(vo, pvo);
+			logger.debug("boardList : " + boardList);
+			
+			BottomPage bp = new BottomPage();
+			bp.setPageVO(pvo);
+			bp.setTotalCount(count);
+			
+			model.addAttribute("boardList", boardList);
+			model.addAttribute("count", count);
+			model.addAttribute("bp", bp);
+			model.addAttribute("vo", vo);
+			model.addAttribute("pvo", pvo);
+		} else {
+			logger.debug("검색어 XXXXXXXXXXXXXXX");
+			int count = tService.count();
+			List<TripVO> boardList = tService.getboardList(pvo);
+			logger.debug("boardList : " + boardList);
+			
+			BottomPage bp = new BottomPage();
+			bp.setPageVO(pvo);
+			bp.setTotalCount(count);
+			
+			model.addAttribute("boardList", boardList);
+			model.addAttribute("count", count);
+			model.addAttribute("bp", bp);
+			model.addAttribute("vo", vo);
+			model.addAttribute("pvo", pvo);
+		}
+		
+//		return "/board2";
 	}
 	
 	// 글쓰기(GET)
@@ -145,16 +179,6 @@ public class MainController {
 		return "redirect:/board2";
 	}
 	
-	// 게시글 조회
-	@RequestMapping(value = "/board2", method = RequestMethod.GET)
-	public void boardList(Model model) throws Exception {
-		
-		List<TripVO> boardList = tService.getboardList();
-		logger.debug("boardList : " + boardList);
-		model.addAttribute("boardList", boardList);
-		
-//		return "/board2";
-	}
 	
 	// 글 상세보기
 	@RequestMapping(value = "/read2", method = RequestMethod.GET)
@@ -199,6 +223,8 @@ public class MainController {
 		tService.delete2(bno);
 		return "redirect:/board2";
 	}
+	
+	// 게시판2 페이징처리
 	
 	
 	// ========== 애령 - 끝 ==========
