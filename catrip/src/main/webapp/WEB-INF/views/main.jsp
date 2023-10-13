@@ -22,9 +22,12 @@
 	<hr>
 	
 	<form action="./board1" method="get">
-		<input type="submit" value="게시판">
+		<input type="submit" value="국내 게시판">
 	</form>
 	
+	<form action="./board0" method="get">
+		<input type="submit" value="해외 게시판">
+	</form>
 	<hr>
 	
 	<form action="./logout" method="get">
