@@ -9,6 +9,7 @@ public class TripVO {
 
 	private Integer t_bno;
 	private String t_city;
+	private String k_city;
 	private String t_name;
 	private String t_foreign;
 	private String t_continent;
