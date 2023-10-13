@@ -14,7 +14,7 @@ public class BoardVO {
 	private int cnt;
 	private int maxPerson;
 	private int personNum;
-	private String foreign;
+	private String HM_ABR;
 	
 	
 	

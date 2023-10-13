@@ -132,8 +132,8 @@
   	
   	<!-- 글쓰기 -->
   	<insert id="regist1" >
-  		insert into board( subject, content, foreign) 
-		values(#{subject}, #{content}, #{foreign})
+  		insert into board( subject, content, HM_ABR) 
+		values(#{subject}, #{content}, "국내")
   	</insert>
   	<!-- 글쓰기 -->
   	
@@ -205,8 +205,8 @@
   	
   	<!-- 글쓰기 -->
   	<insert id="0regist1" >
-  		insert into board( subject, content ,foreign) 
-		values(#{subject}, #{content},"해외")
+  		insert into board( subject, content) 
+		values(#{subject}, #{content})
   	</insert>
   	<!-- 글쓰기 -->
   	
