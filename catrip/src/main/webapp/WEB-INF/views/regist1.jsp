@@ -13,6 +13,7 @@
 		<form action="" method="post">
 			제목 : <input type="text" name="subject" >
 			내용 : <input type="text" name="content"> 
+			국내/외 : 
 			<input type="submit" value="등록">
 		</form>
 		</fieldset>

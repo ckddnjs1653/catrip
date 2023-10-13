@@ -22,6 +22,7 @@ import com.ct.domain.BoardVO;
 import com.ct.domain.BottomPage;
 import com.ct.domain.MemberVO;
 import com.ct.domain.PageVO;
+import com.ct.service.Board2Service;
 import com.ct.service.BoardService;
 import com.ct.domain.TripVO;
 import com.ct.service.MemberService;
@@ -39,6 +40,9 @@ public class MainController {
 
 	@Autowired
 	private TripService tService;
+	
+	@Autowired
+	private Board2Service b2Service;
 
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
@@ -229,6 +233,7 @@ public class MainController {
 	
 	// ========== 애령 - 끝 ==========
 	
+	// ============================국내 게시판 - 시작 ==============================================
 
 	// http://localhost:8080/board1
 	// 게시판1 
@@ -341,4 +346,48 @@ public class MainController {
         return "chat"; 
     }
 	
+	// ============================ 국내 게시판 - 끝 ==============================================
+	
+	
+	
+	// ============================ 해외 게시판 - 시작 ==============================================
+	
+	// http://localhost:8080/board0
+		// 게시판1 
+		@RequestMapping(value ="/board0",method = RequestMethod.GET)
+		public void board0( Model model, BoardVO vo, PageVO pvo) throws Exception{
+			
+			if(vo.getSubject()  != null && !vo.getSubject().equals("")) {
+				int count = b2Service.count(vo);
+				List<BoardVO> board_List1 = b2Service.boardList(vo,pvo);
+				BottomPage bp = new BottomPage();
+	            bp.setPageVO(pvo);
+	            bp.setTotalCount(count);
+	            model.addAttribute("bp",bp);
+	            logger.debug("pvo : " + pvo);
+				logger.debug("검색엉ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+				logger.debug("board_List1@@@@@@@@@@@" + board_List1);
+				model.addAttribute("board_list",board_List1);
+				model.addAttribute("count",count);
+				model.addAttribute("vo",vo);
+				model.addAttribute("pvo",pvo);
+				
+			} else {
+				int count = b2Service.count();
+				List<BoardVO> board_list = b2Service.boardList(pvo);
+				BottomPage bp = new BottomPage();
+	            bp.setPageVO(pvo);
+	            bp.setTotalCount(count);
+	            model.addAttribute("bp",bp);
+				logger.debug("검색어xxxxxxxxxxxx");
+				logger.debug("board_list@@@@@@@@" + board_list);
+				model.addAttribute("board_list",board_list);
+				model.addAttribute("count",count);
+				model.addAttribute("vo",vo);
+				model.addAttribute("pvo",pvo);
+			}
+		}
+	// ============================ 해외 게시판 - 끝 ==============================================
+
+
 }

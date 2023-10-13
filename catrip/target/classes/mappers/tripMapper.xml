@@ -94,7 +94,7 @@
 	</select>
 	<!-- 게시판2 글 개수(검색O) -->
   
-  
+  <!-- //////////////////// 국내 ////////////////////////////////////////// -->
   
   	<!-- 글 목록 조회1  -->
   	<select id="boardList" resultType="com.ct.domain.BoardVO" >
@@ -132,8 +132,8 @@
   	
   	<!-- 글쓰기 -->
   	<insert id="regist1" >
-  		insert into board( subject, content) 
-		values(#{subject}, #{content})
+  		insert into board( subject, content, foreign) 
+		values(#{subject}, #{content}, #{foreign})
   	</insert>
   	<!-- 글쓰기 -->
   	
@@ -165,6 +165,82 @@
   		where b_bno = #{b_bno}
   	</delete>
   	<!-- 글 삭제하기 -->
+<!-- //////////////////// 국내 ////////////////////////////////////////// -->
+
+
+<!-- //////////////////// 해외 ////////////////////////////////////////// -->
+		<!-- 글 목록 조회1  -->
+  	<select id="0boardList" resultType="com.ct.domain.BoardVO" >
+  		select * from board
+  		limit #{startPage}, #{pageSize}
+  	</select>
+  	<!-- 글 목록 조회1  -->
   	
+  	<!-- 글 목록 갯수 -->
+  	<select id="0count" resultType="int">
+  		select count(subject) from board
+  	</select>
+  	<!-- 글 목록 갯수 -->
+
+
+  	<!-- 글 목록 조회1 + 검색 -->
+  	<select id="0boardSearch" resultType="com.ct.domain.BoardVO" parameterType="hashMap">
+  		select * from board
+  		<where>
+  		subject like concat ( '%' ,#{subject},'%' )
+  		</where>
+  		limit #{startPage}, #{pageSize}
+  	</select>
+  	<!-- 글 목록 조회1 + 검색 -->
+  	
+  	<!-- 글 목록 갯수 + 검색 -->
+  	<select id="0count1" resultType="int" parameterType="hashMap">
+  		select count(*) from board
+  		<where>
+  		subject like concat ( '%' ,#{subject},'%' )
+  		</where>
+  	</select>
+  	<!-- 글 목록 갯수 + 검색 -->
+  	
+  	
+  	<!-- 글쓰기 -->
+  	<insert id="0regist1" >
+  		insert into board( subject, content ,foreign) 
+		values(#{subject}, #{content},"해외")
+  	</insert>
+  	<!-- 글쓰기 -->
+  	
+  	<!-- 글 상새내용 보기1 -->
+  	<select id="0getBoard1" resultType="com.ct.domain.BoardVO">
+		select * from board
+		where b_bno = #{b_bno}
+	</select>
+  	<!-- 글 상새내용 보기1 -->
+  	
+  	<!-- 글 조회수 증가  -->
+  	<update id="0upCnt">
+  		update board set cnt = cnt +1
+  		where b_bno = #{b_bno}
+  	</update>
+  	<!-- 글 조회수 증가  -->
+  	
+  	<!-- 글 수정하기  -->
+  	<update id="0update1">
+  		update board 
+  		set subject = #{subject} , content = #{content}
+  		where b_bno = #{b_bno} 
+  	</update>
+  	<!-- 글 수정하기  -->
+  	
+  	<!-- 글 삭제하기 -->
+  	<delete id="0delete1">
+  		delete from board
+  		where b_bno = #{b_bno}
+  	</delete>
+  	<!-- 글 삭제하기 -->
+
+
+
+<!-- //////////////////// 해외 ////////////////////////////////////////// -->
   
   </mapper>
