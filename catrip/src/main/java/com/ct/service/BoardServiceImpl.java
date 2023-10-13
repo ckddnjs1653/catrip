@@ -20,6 +20,8 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Autowired
 	private BoardDAO bdao;
+	
+	
 
 	// 글 목록 조회
 	@Override
