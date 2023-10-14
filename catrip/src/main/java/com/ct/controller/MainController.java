@@ -318,18 +318,28 @@ public class MainController {
 	
 	// 글 수정하기(POST)
 	@RequestMapping(value ="/modify1" ,method = RequestMethod.POST)
-	public String upBoardPost(BoardVO bvo) throws Exception {
+	public String upBoardPost(BoardVO bvo, @RequestParam("value") int v) throws Exception {
 		
 		bService.updateBoard(bvo);
-		return "redirect:/board1";
+		
+		if(v == 0) {
+			return "redirect:/board0";
+		} else {
+			return "redirect:/board1";
+		}
 	}
-	//글 삭제하기
-	@RequestMapping(value="/delete1" , method=RequestMethod.GET)
-	public String deleteBoardPOST(@RequestParam("b_bno") int b_bno) throws Exception{
-		
-		
+	
+	// 글 삭제하기
+	@RequestMapping(value="/delete1", method=RequestMethod.GET)
+	public String deleteBoardPOST(@RequestParam("v") int v, @RequestParam("b_bno") int b_bno) throws Exception{
+		logger.debug("삭제 테스트 : " + v);
 		bService.deleteBoard1(b_bno);
-		return "redirect:/board1";
+		
+		if(v == 0) {
+			return "redirect:/board0";
+		} else {
+			return "redirect:/board1";
+		}
 	}
 	
 	// 채팅
