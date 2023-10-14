@@ -277,20 +277,23 @@ public class MainController {
 		
 	}
 	// http://localhost:8080/regist1
-	//글쓰기(GET)
-	@RequestMapping(value="/regist1",method = RequestMethod.GET)
+	// 글쓰기(GET)
+	@RequestMapping(value="/regist1", method = RequestMethod.GET)
 	public String registGET1(BoardVO vo) throws Exception{
 		
 		return "regist1";
 	}
 	
-	//글쓰기(POST)
-	@RequestMapping(value ="/regist1",method=RequestMethod.POST)
-	public String registPOST1(BoardVO vo) throws Exception{
-		
-		bService.insertBoard(vo);
-		
-		return "redirect:/board1";
+	// 글쓰기(POST)
+	@RequestMapping(value ="/regist1", method=RequestMethod.POST)
+	public String registPOST1(BoardVO vo, @RequestParam("v") int v) throws Exception{
+		if(v == 1) {
+			bService.insertBoard(vo);
+			return "redirect:/board1";
+		} else {
+			b2Service.insertBoard(vo);
+			return "redirect:/board0";
+		}
 	}
 	
 	// 글 상세보기 (조회수 증가)
@@ -353,40 +356,40 @@ public class MainController {
 	// ============================ 해외 게시판 - 시작 ==============================================
 	
 	// http://localhost:8080/board0
-		// 게시판1 
-		@RequestMapping(value ="/board0",method = RequestMethod.GET)
-		public void board0( Model model, BoardVO vo, PageVO pvo) throws Exception{
+	// 게시판1 
+	@RequestMapping(value ="/board0",method = RequestMethod.GET)
+	public void board0( Model model, BoardVO vo, PageVO pvo) throws Exception{
+		
+		if(vo.getSubject()  != null && !vo.getSubject().equals("")) {
+			int count = b2Service.count(vo);
+			List<BoardVO> board_List1 = b2Service.boardList(vo,pvo);
+			BottomPage bp = new BottomPage();
+            bp.setPageVO(pvo);
+            bp.setTotalCount(count);
+            model.addAttribute("bp",bp);
+            logger.debug("pvo : " + pvo);
+			logger.debug("검색엉ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+			logger.debug("board_List1@@@@@@@@@@@" + board_List1);
+			model.addAttribute("board_list",board_List1);
+			model.addAttribute("count",count);
+			model.addAttribute("vo",vo);
+			model.addAttribute("pvo",pvo);
 			
-			if(vo.getSubject()  != null && !vo.getSubject().equals("")) {
-				int count = b2Service.count(vo);
-				List<BoardVO> board_List1 = b2Service.boardList(vo,pvo);
-				BottomPage bp = new BottomPage();
-	            bp.setPageVO(pvo);
-	            bp.setTotalCount(count);
-	            model.addAttribute("bp",bp);
-	            logger.debug("pvo : " + pvo);
-				logger.debug("검색엉ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
-				logger.debug("board_List1@@@@@@@@@@@" + board_List1);
-				model.addAttribute("board_list",board_List1);
-				model.addAttribute("count",count);
-				model.addAttribute("vo",vo);
-				model.addAttribute("pvo",pvo);
-				
-			} else {
-				int count = b2Service.count();
-				List<BoardVO> board_list = b2Service.boardList(pvo);
-				BottomPage bp = new BottomPage();
-	            bp.setPageVO(pvo);
-	            bp.setTotalCount(count);
-	            model.addAttribute("bp",bp);
-				logger.debug("검색어xxxxxxxxxxxx");
-				logger.debug("board_list@@@@@@@@" + board_list);
-				model.addAttribute("board_list",board_list);
-				model.addAttribute("count",count);
-				model.addAttribute("vo",vo);
-				model.addAttribute("pvo",pvo);
-			}
+		} else {
+			int count = b2Service.count();
+			List<BoardVO> board_list = b2Service.boardList(pvo);
+			BottomPage bp = new BottomPage();
+            bp.setPageVO(pvo);
+            bp.setTotalCount(count);
+            model.addAttribute("bp",bp);
+			logger.debug("검색어xxxxxxxxxxxx");
+			logger.debug("board_list@@@@@@@@" + board_list);
+			model.addAttribute("board_list",board_list);
+			model.addAttribute("count",count);
+			model.addAttribute("vo",vo);
+			model.addAttribute("pvo",pvo);
 		}
+	}
 	// ============================ 해외 게시판 - 끝 ==============================================
 
 
