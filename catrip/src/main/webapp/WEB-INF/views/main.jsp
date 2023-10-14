@@ -22,11 +22,11 @@
 	<hr>
 	
 	<form action="./board1" method="get">
-		<input type="submit" value="국내 게시판">
+		<input type="button" value="국내" onclick="location.href='board1';">
 	</form>
-	
+	<hr>
 	<form action="./board0" method="get">
-		<input type="submit" value="해외 게시판">
+		<input type="button" value="해외" onclick="location.href='board0';">
 	</form>
 	<hr>
 	

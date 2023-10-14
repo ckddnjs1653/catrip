@@ -11,7 +11,7 @@
 	<h1>게시판</h1>
 	
 	<form action="" method="get">
-	 제목 <input type="text" name="subject" placeholder="제목을 입력하세요."> <br>
+	 제목 <input type="text" name="subject" placeholder="제목을 입력하세요.">
 	 	<input type="submit" value="조회">
 	</form>
 	
@@ -25,24 +25,25 @@
 		<th>조회</th>
 		<th>등록일</th>
 		</tr>
-		<c:if test="${count>0 }">
 		<c:forEach var="bd" items="${board_list}">
-		<tr>
-		<td>${bd.b_bno }</td>
-		<td><a href="/read1?b_bno=${bd.b_bno}">${bd.subject }</td>
-		<td>${bd.content }</td>
-		<td>${bd.cnt }</td>
-		<td>${bd.b_regdate }</td>
-		</tr>
-		</c:forEach>
+		<c:if test="${bd.HM_ABR == '국내'}">
+			<tr>
+				<td>${bd.b_bno }</td>
+				<td><a href="/read1?b_bno=${bd.b_bno}">${bd.subject }</a></td>
+				<td>${bd.content }</td>
+				<td>${bd.cnt }</td>
+				<td>${bd.b_regdate }</td>
+			</tr>
 		</c:if>
+		</c:forEach>
 	</table>
 	</form>
 	
 	<hr>
 	
 	<form action="./regist1" method="get">
-		<input type="button" onclick="location.href='regist1';" value="글쓰기">
+		<input type="button" onclick="location.href='regist1?v=1';" value="글쓰기">
+		<input type="button" value="메인" onclick="location.href='main';">
 	</form>
 	
 	<hr>
