@@ -29,7 +29,7 @@
 		<c:if test="${bd.HM_ABR == '국내'}">
 			<tr>
 				<td>${bd.b_bno }</td>
-				<td><a href="/read1?b_bno=${bd.b_bno}">${bd.subject }</a></td>
+				<td><a href="/read1?v=1&b_bno=${bd.b_bno}">${bd.subject }</a></td>
 				<td>${bd.content }</td>
 				<td>${bd.cnt }</td>
 				<td>${bd.b_regdate }</td>
