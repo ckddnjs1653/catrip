@@ -102,7 +102,7 @@ public class MainController {
 
 	}
 	
-	// http://localhost:8088/login
+	// http://localhost:8080/login
 	// 로그인 - 정보 입력(get)
 	@RequestMapping(value = "/login", method = RequestMethod.GET) // 컨트롤러 주소인 /member를 제외해야함
 	public void loginGET() {

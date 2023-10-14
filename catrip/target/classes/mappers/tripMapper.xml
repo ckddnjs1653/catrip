@@ -23,8 +23,8 @@
 	
 	<!-- 여행지 글쓰기 -->
 	<insert id="regist2">
-		insert into trip(title, t_content) 
-		values(#{title}, #{t_content})
+		insert into trip(t_foreign, t_name, t_city, title, t_content, t_score, t_danger) 
+		values(#{t_foreign}, #{t_name}, #{t_city}, #{title}, #{t_content}, #{t_score}, #{t_danger})
 	</insert>
 	<!-- 여행지 글쓰기 -->
 	

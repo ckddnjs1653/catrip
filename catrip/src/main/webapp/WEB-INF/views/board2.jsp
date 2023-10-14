@@ -17,15 +17,27 @@
 	<br>
 	<table border="1">
 			<tr>
+				<th>번호</th>
+				<th>국내/외</th>
+				<th>나라</th>
+				<th>도시</th>
 				<th>제목</th>
 				<th>내용</th>
+				<th>평점</th>
+				<th>위험도</th>
 				<th>조회수</th>
 				<th>작성일</th>
 			</tr>
 			<c:forEach var="vo" items="${boardList }">
 				<tr>
+					<td>${vo.t_bno }</td>
+					<td>${vo.t_foreign }</td>
+					<td>${vo.t_name }</td>
+					<td>${vo.t_city }</td>
 					<td><a href="/read2?bno=${vo.t_bno }">${vo.title }</a></td>
 					<td>${vo.t_content }</td>
+					<td>${vo.t_score }</td>
+					<td>${vo.t_danger }</td>
 					<td>${vo.viewcnt }</td>
 					<td>${vo.regdate }</td>
 				</tr>
