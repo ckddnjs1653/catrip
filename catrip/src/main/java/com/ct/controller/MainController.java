@@ -279,36 +279,43 @@ public class MainController {
 	// http://localhost:8080/regist1
 	// 글쓰기(GET)
 	@RequestMapping(value="/regist1", method = RequestMethod.GET)
-	public String registGET1(BoardVO vo) throws Exception{
+	public String registGET1(HttpSession session, BoardVO vo) throws Exception{
+		MemberVO mvo = (MemberVO)session.getAttribute("id");
 		
 		return "regist1";
 	}
 	
 	// 글쓰기(POST)
 	@RequestMapping(value ="/regist1", method=RequestMethod.POST)
-	public String registPOST1(BoardVO vo, @RequestParam("v") int v) throws Exception{
+	public String registPOST1(HttpSession session, BoardVO vo, @RequestParam("v") int v) throws Exception {
+		
+		MemberVO mvo = (MemberVO)session.getAttribute("id");
+		String id = mvo.getId();
+		logger.debug("글쓰기 테스트POST 22222 @@@@ : " + id);
+		
 		if(v == 1) {
-			bService.insertBoard(vo);
+			bService.insertBoard(vo, id);
 			return "redirect:/board1";
 		} else {
-			b2Service.insertBoard(vo);
+			b2Service.insertBoard(vo, id);
 			return "redirect:/board0";
 		}
 	}
 	
-	// 글 상세보기 (조회수 증가)
+	// 글 상세보기
 	@RequestMapping(value = "/read1", method = RequestMethod.GET)
-	public void read1GET(Model model, @RequestParam("b_bno") int b_bno ) throws Exception {
-		
+	public void read1GET(HttpSession session, Model model, @RequestParam("b_bno") int b_bno ) throws Exception {
+		MemberVO mvo = (MemberVO)session.getAttribute("id");
 		logger.debug("b_bno : " + b_bno);
 			
 		bService.updateCnt(b_bno);
 		bService.read1Board(b_bno);
+		
 		model.addAttribute("b_bno", bService.read1Board(b_bno));
 		
 	}
 	
-	// 글 수정하기 (GET)
+	// 글 수정하기(GET)
 	@RequestMapping(value ="/modify1" ,method = RequestMethod.GET)
 	public void upBoardGet(@RequestParam("b_bno") int b_bno, Model model) throws Exception {
 		
@@ -368,7 +375,9 @@ public class MainController {
 	// http://localhost:8080/board0
 	// 게시판1 
 	@RequestMapping(value ="/board0",method = RequestMethod.GET)
-	public void board0( Model model, BoardVO vo, PageVO pvo) throws Exception{
+	public void board0(HttpSession session, Model model, BoardVO vo, PageVO pvo) throws Exception {
+		MemberVO mvo = (MemberVO)session.getAttribute("id");
+		String id = mvo.getId();
 		
 		if(vo.getSubject()  != null && !vo.getSubject().equals("")) {
 			int count = b2Service.count(vo);
@@ -380,6 +389,8 @@ public class MainController {
             logger.debug("pvo : " + pvo);
 			logger.debug("검색엉ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
 			logger.debug("board_List1@@@@@@@@@@@" + board_List1);
+			
+			model.addAttribute("id", id);
 			model.addAttribute("board_list",board_List1);
 			model.addAttribute("count",count);
 			model.addAttribute("vo",vo);
@@ -394,6 +405,8 @@ public class MainController {
             model.addAttribute("bp",bp);
 			logger.debug("검색어xxxxxxxxxxxx");
 			logger.debug("board_list@@@@@@@@" + board_list);
+			
+			model.addAttribute("id", id);
 			model.addAttribute("board_list",board_list);
 			model.addAttribute("count",count);
 			model.addAttribute("vo",vo);

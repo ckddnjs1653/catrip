@@ -15,7 +15,6 @@ public class BoardVO {
 	private int maxPerson;
 	private int personNum;
 	private String HM_ABR;
-	
-	
+	private String id;
 	
 }
