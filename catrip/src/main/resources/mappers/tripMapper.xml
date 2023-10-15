@@ -100,6 +100,7 @@
   	<select id="boardList" resultType="com.ct.domain.BoardVO" >
   		select * from board
   		where HM_ABR = "국내"
+  		order by b_bno desc
   		limit #{startPage}, #{pageSize}
   	</select>
   	<!-- 글 목록 조회1  -->
@@ -130,8 +131,8 @@
   	
   	<!-- 글쓰기 -->
   	<insert id="regist1" >
-  		insert into board( subject, content, HM_ABR) 
-		values(#{subject}, #{content}, "국내")
+  		insert into board( subject, content, HM_ABR, id) 
+		values(#{vo.subject}, #{vo.content}, "국내", #{id})
   	</insert>
   	<!-- 글쓰기 -->
   	
@@ -171,6 +172,7 @@
   	<select id="0boardList" resultType="com.ct.domain.BoardVO" >
   		select * from board
   		where HM_ABR = "해외"
+  		order by b_bno desc
   		limit #{startPage}, #{pageSize}
   	</select>
   	<!-- 글 목록 조회  -->
@@ -201,8 +203,8 @@
   	
   	<!-- 글쓰기 -->
   	<insert id="0regist1" >
-  		insert into board(subject, content, HM_ABR) 
-		values(#{subject}, #{content}, "해외")
+		insert into board( subject, content, HM_ABR, id) 
+		values(#{vo.subject}, #{vo.content}, "해외", #{id})
   	</insert>
   	<!-- 글쓰기 -->
   	

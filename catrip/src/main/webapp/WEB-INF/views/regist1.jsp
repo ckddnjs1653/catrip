@@ -6,9 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<c:if test="${empty sessionScope.id.id}">
+    <c:redirect url="/login" />
+</c:if>
+
 </head>
 <body>
 		<h1>글쓰기</h1>
+		
+		ㅇㅇㅇㅇ : ${sessionScope.id.id} <br>
+		ㅇㅇㅇㅇ : ${sessionScope.id} <br>
+		ㅇㅇㅇㅇ : ${id }<br>
+			
 	    <c:set var="value" value="${param.v}" />
 
 	    <c:if test="${value == '0'}">

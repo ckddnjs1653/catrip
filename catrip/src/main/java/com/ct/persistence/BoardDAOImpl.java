@@ -65,9 +65,13 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	// 글쓰기
 	@Override
-	public void insertBoard(BoardVO vo) throws Exception {
+	public void insertBoard(BoardVO vo, String id) throws Exception {
 		
-		int result = SqlSession.insert(NAMESPACE + ".regist1", vo);
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		data.put("id", id);
+		data.put("vo", vo);
+		
+		int result = SqlSession.insert(NAMESPACE + ".regist1", data);
 		
 		if(result != 0) {
 			logger.debug("글쓰기 완료");

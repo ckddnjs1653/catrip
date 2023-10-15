@@ -56,9 +56,9 @@ public class BoardServiceImpl implements BoardService{
 
 	// 글쓰기
 	@Override
-	public void insertBoard(BoardVO vo) throws Exception {
+	public void insertBoard(BoardVO vo, String id) throws Exception {
 		
-		bdao.insertBoard(vo);
+		bdao.insertBoard(vo, id);
 	}
 	// 글 상세내용 보기
 	@Override

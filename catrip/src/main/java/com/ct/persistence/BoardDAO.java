@@ -20,7 +20,7 @@ public interface BoardDAO {
 	public int count(BoardVO vo) throws Exception;
 	
 	// 글쓰기
-	public void insertBoard(BoardVO vo) throws Exception;
+	public void insertBoard(BoardVO vo, String id) throws Exception;
 	
 	// 글 상세보기
 	public BoardVO read1Board(int b_bno) throws Exception;
