@@ -242,10 +242,8 @@
   	
   	<!-- 글쓰기 -->
   	<insert id="0regist1" >
-
-  		insert into board(subject, content,t_name,t_city, HM_ABR ,id) 
-		values(#{vo.subject}, #{vo.content},#{t_name},#{t_city} "해외",#{id})
-
+		insert into board(subject, content, HM_ABR, id) 
+		values(#{vo.subject}, #{vo.content}, "해외", #{id})
   	</insert>
   	<!-- 글쓰기 -->
   	

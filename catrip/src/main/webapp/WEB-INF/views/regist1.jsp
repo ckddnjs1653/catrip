@@ -40,7 +40,7 @@
 						</c:if>
 					</c:forEach>
 					<br>
-				</select> 내용 : <input type="text" name="content">
+				</select> 내용 : <textarea rows="10" cols="20" name="content"></textarea>
 				<hr>
 				<input type="hidden" name="v" value="0"> <input
 					type="submit" value="등록">
@@ -59,7 +59,7 @@
 						</c:if>
 					</c:forEach>
 				</select><br> 제목 : <input type="text" name="subject"> <br>
-				내용 : <input type="text" name="content">
+				내용 : <textarea rows="10" cols="20" name="content"></textarea>
 				<hr>
 				<input type="hidden" name="v" value="1"> <input
 					type="submit" value="등록">
