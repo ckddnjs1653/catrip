@@ -52,10 +52,11 @@ public class Board2ServiceImpl implements Board2Service {
 
 		// 글쓰기
 		@Override
-		public void insertBoard(BoardVO vo) throws Exception {
+		public void insertBoard(BoardVO vo, String id) throws Exception {
 			
-			b2dao.insertBoard(vo);
+			b2dao.insertBoard(vo, id);
 		}
+		
 		// 글 상세내용 보기
 		@Override
 		public BoardVO read1Board(int b_bno) throws Exception {

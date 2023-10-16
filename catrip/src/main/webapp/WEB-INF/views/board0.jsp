@@ -9,6 +9,9 @@
 </head>
 <body>
 	<h1>게시판</h1>
+	ㅇㅇㅇㅇ : ${sessionScope.id.id} <br>
+	ㅇㅇㅇㅇ : ${sessionScope.id} <br>
+	ㅇㅇㅇㅇ : ${id }<br>
 	
 	<form action="" method="get">
 	 제목 <input type="text" name="subject" placeholder="제목을 입력하세요.">
@@ -43,8 +46,9 @@
 	
 	<form action="./regist1" method="get">
 		<input type="button" onclick="location.href='regist1?v=0';" value="글쓰기">
-		<input type="button" value="메인" onclick="location.href='main';">
 	</form>
+	
+	<input type="button" value="메인" onclick="location.href='main';">
 	
 	<hr>
 	count : ${count }<br>
