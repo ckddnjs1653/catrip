@@ -70,6 +70,12 @@ public class TripServiceImpl implements TripService {
 	public int count(TripVO vo) throws Exception {
 		return tdao.count(vo);
 	}
+
+	@Override
+	public List<TripVO> cityList() throws Exception {
+		
+		return tdao.cityList();
+	}
 	
 	
 	

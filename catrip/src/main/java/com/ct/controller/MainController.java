@@ -279,7 +279,11 @@ public class MainController {
 	// http://localhost:8080/regist1
 	// 글쓰기(GET)
 	@RequestMapping(value="/regist1", method = RequestMethod.GET)
-	public String registGET1(BoardVO vo) throws Exception{
+	public String registGET1(BoardVO vo,Model model,TripVO tvo) throws Exception{
+		List<TripVO> trip = tService.cityList();
+		
+		model.addAttribute("trip",trip);
+		
 		
 		return "regist1";
 	}
