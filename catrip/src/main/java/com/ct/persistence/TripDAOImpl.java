@@ -105,6 +105,12 @@ public class TripDAOImpl implements TripDAO {
 		
 		return sqlSession.selectOne(NAMESPACE + ".Cnt2", data);
 	}
+
+	@Override
+	public List<TripVO> cityList() throws Exception {
+		
+		return sqlSession.selectList(NAMESPACE+".city");
+	}
 	
 	
 	

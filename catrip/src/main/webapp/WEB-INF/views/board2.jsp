@@ -28,20 +28,27 @@
 				<th>조회수</th>
 				<th>작성일</th>
 			</tr>
-			<c:forEach var="vo" items="${boardList }">
-				<tr>
-					<td>${vo.t_bno }</td>
-					<td>${vo.t_foreign }</td>
-					<td>${vo.t_name }</td>
-					<td>${vo.t_city }</td>
-					<td><a href="/read2?bno=${vo.t_bno }">${vo.title }</a></td>
-					<td>${vo.t_content }</td>
-					<td>${vo.t_score }</td>
-					<td>${vo.t_danger }</td>
-					<td>${vo.viewcnt }</td>
-					<td>${vo.regdate }</td>
-				</tr>
-			</c:forEach>
+		<c:forEach var="vo" items="${boardList}">
+			<tr>
+				<td>${vo.t_bno}</td>
+				<td>${vo.t_foreign}</td>
+				<td>${vo.t_name}</td>
+				<c:choose>
+					<c:when test="${vo.t_foreign == '국내'}">
+						<td>${vo.k_city}</td>
+					</c:when>
+					<c:when test="${vo.t_foreign == '해외'}">
+						<td>${vo.t_city}</td>
+					</c:when>
+				</c:choose>
+				<td><a href="/read2?bno=${vo.t_bno}">${vo.title}</a></td>
+				<td>${vo.t_content}</td>
+				<td>${vo.t_score}</td>
+				<td>${vo.t_danger}</td>
+				<td>${vo.viewcnt}</td>
+				<td>${vo.regdate}</td>
+			</tr>
+		</c:forEach>
 	</table>	
 	<hr>
 	<c:if test="${count > 0}">
