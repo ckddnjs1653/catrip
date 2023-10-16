@@ -413,6 +413,25 @@ public class MainController {
 			model.addAttribute("pvo",pvo);
 		}
 	}
+	
+	// 글 상세보기
+	@RequestMapping(value = "/read0", method = RequestMethod.GET)
+	public void read0GET(HttpSession session, Model model, @RequestParam("b_bno") int b_bno ) throws Exception {
+		MemberVO mvo = (MemberVO)session.getAttribute("id");
+		logger.debug("b_bno : " + b_bno);
+			
+		bService.updateCnt(b_bno);
+		bService.read1Board(b_bno);
+		
+		model.addAttribute("b_bno", bService.read1Board(b_bno));
+		
+	}
+	
+	// 신청하기 팝업
+	@RequestMapping(value = "/apply0", method = RequestMethod.GET)
+	public void apply0() throws Exception {
+		logger.debug("신청하기 apply0 팝업띄우기");
+	}
 	// ============================ 해외 게시판 - 끝 ==============================================
 
 

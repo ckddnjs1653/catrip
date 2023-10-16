@@ -203,7 +203,7 @@
   	
   	<!-- 글쓰기 -->
   	<insert id="0regist1" >
-		insert into board( subject, content, HM_ABR, id) 
+		insert into board(subject, content, HM_ABR, id) 
 		values(#{vo.subject}, #{vo.content}, "해외", #{id})
   	</insert>
   	<!-- 글쓰기 -->
