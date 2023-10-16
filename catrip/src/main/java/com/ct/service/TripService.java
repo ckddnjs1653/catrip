@@ -37,5 +37,8 @@ public interface TripService {
 	
 	// 글 개수 조회(검색용)
 	public int count(TripVO vo) throws Exception;
+	
+	// 도시 이름 불러오기 (글쓰기용)
+	public List<TripVO> cityList() throws Exception;
 
 }

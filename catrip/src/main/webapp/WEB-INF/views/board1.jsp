@@ -31,6 +31,7 @@
 				<td>${bd.b_bno }</td>
 				<td><a href="/read1?v=1&b_bno=${bd.b_bno}">${bd.subject }</a></td>
 				<td>${bd.content }</td>
+				<td>
 				<td>${bd.cnt }</td>
 				<td>${bd.b_regdate }</td>
 			</tr>
@@ -47,10 +48,8 @@
 	</form>
 	
 	<hr>
-	count : ${count }<br>
-	@startPage : ${bp.startPage }<br>
-	@endPage : ${bp.endPage }<br>
-	@@@pageSize : ${pvo.pageSize }
+	vo : ${vo } <br>
+	baord_list : ${board_list }
 	<hr>
 	
 
