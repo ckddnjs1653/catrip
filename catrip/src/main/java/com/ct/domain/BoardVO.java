@@ -16,5 +16,7 @@ public class BoardVO {
 	private int personNum;
 	private String HM_ABR;
 	private String id;
-	
+	private String t_name;
+	private String t_city;
+	private String k_city;
 }

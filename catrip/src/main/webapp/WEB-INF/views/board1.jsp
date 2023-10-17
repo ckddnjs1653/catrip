@@ -22,6 +22,7 @@
 		<th>번호</th>
 		<th>제목</th>
 		<th>내용</th>
+		<th>도시</th>
 		<th>조회</th>
 		<th>등록일</th>
 		</tr>
@@ -31,7 +32,7 @@
 				<td>${bd.b_bno }</td>
 				<td><a href="/read1?v=1&b_bno=${bd.b_bno}">${bd.subject }</a></td>
 				<td>${bd.content }</td>
-				<td>
+				<td>${bd.k_city }</td>
 				<td>${bd.cnt }</td>
 				<td>${bd.b_regdate }</td>
 			</tr>
@@ -49,7 +50,8 @@
 	
 	<hr>
 	vo : ${vo } <br>
-	baord_list : ${board_list }
+	baord_list : ${board_list } <br>
+	k_city : ${k_city }
 	<hr>
 	
 

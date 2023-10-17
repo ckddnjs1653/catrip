@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ct.domain.BoardVO;
 import com.ct.domain.PageVO;
+import com.ct.domain.TripVO;
 
 public interface BoardDAO {
 

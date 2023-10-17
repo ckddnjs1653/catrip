@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ct.domain.BoardVO;
 import com.ct.domain.PageVO;
+import com.ct.domain.TripVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -70,6 +71,7 @@ public class BoardDAOImpl implements BoardDAO{
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		data.put("id", id);
 		data.put("vo", vo);
+		
 		
 		int result = SqlSession.insert(NAMESPACE + ".regist1", data);
 		
