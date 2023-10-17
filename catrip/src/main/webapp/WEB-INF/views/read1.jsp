@@ -10,6 +10,7 @@
 <body>
 		<h1>내용</h1>
 		세션 아이디 : ${sessionScope.id.id} <br>
+		b_bno.id : ${b_bno.id }<br>
 		<c:set var="value" value="${param.v}" />
 		${value }
 		<hr>
