@@ -32,7 +32,7 @@
 		<c:if test="${bd.HM_ABR == '해외'}">
 			<tr>
 				<td>${bd.b_bno }</td>
-				<td><a href="/read1?v=0&b_bno=${bd.b_bno}">${bd.subject }</a></td>
+				<td><a href="/read0?v=0&b_bno=${bd.b_bno}">${bd.subject }</a></td>
 				<td>${bd.content }</td>
 				<td>${bd.cnt }</td>
 				<td>${bd.b_regdate }</td>
@@ -46,9 +46,9 @@
 	
 	<form action="./regist1" method="get">
 		<input type="button" onclick="location.href='regist1?v=0';" value="글쓰기">
+		<input type="button" value="메인" onclick="location.href='main';">
 	</form>
 	
-	<input type="button" value="메인" onclick="location.href='main';">
 	
 	<hr>
 	count : ${count }<br>
