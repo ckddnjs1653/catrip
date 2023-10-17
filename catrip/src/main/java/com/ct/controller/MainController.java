@@ -283,7 +283,7 @@ public class MainController {
 	public String registGET1(HttpSession session,BoardVO vo,Model model,TripVO tvo) throws Exception{
 		
   	MemberVO mvo = (MemberVO)session.getAttribute("id");
-  List<TripVO> trip = tService.cityList();
+    List<TripVO> trip = tService.cityList();
 		
 		model.addAttribute("trip",trip);
 		
@@ -299,6 +299,12 @@ public class MainController {
 		MemberVO mvo = (MemberVO)session.getAttribute("id");
 		String id = mvo.getId();
 		logger.debug("글쓰기 테스트POST 22222 @@@@ : " + id);
+		
+		logger.debug("!!!!!!@@@@@@@@@@@@@@@@@@@@@"+vo.getSubject());
+		logger.debug("!!!!!!@@@@@@@@@@@@@@@@@@@@@"+vo.getT_name());
+		logger.debug("!!!!!!@@@@@@@@@@@@@@@@@@@@@"+vo.getK_city());
+		logger.debug("!!!!!!@@@@@@@@@@@@@@@@@@@@@"+id);
+		
 		
 		if(v == 1) {
 			bService.insertBoard(vo, id);

@@ -25,18 +25,19 @@
 		<fieldset>
 			<form action="" method="post">
 				해외 <br> 제목 : <input type="text" name="subject"> <br>
-				나라 : <select>
+				나라 : <select name="t_name">
 					<option>나라를 선택하세요.</option>
 					<c:forEach var="t" items="${trip}">
 						<c:if test="${not empty t.t_city}">
 							<option>${t.t_name}</option>
 						</c:if>
 					</c:forEach>
-				</select><br> 도시 : <select>
+				</select ><br> 
+				도시 : <select name="t_city ">
 					<option>도시를 선택하세요.</option>
 					<c:forEach var="t" items="${trip}">
 						<c:if test="${not empty t.t_city}">
-							<option>${t.t_city}</option>
+							<option value="${t.t_city}" }>${t.t_city}</option>
 						</c:if>
 					</c:forEach>
 					<br>
@@ -51,11 +52,11 @@
 	<c:if test="${value == '1'}">
 		<fieldset>
 			<form action="" method="post">
-				국내 <br> 도시 : <select>
+				국내 <br> 도시 : <select name="k_city" >
 					<option>도시를 선택하세요.</option>
 					<c:forEach var="k" items="${trip}">
 						<c:if test="${not empty k.k_city}">
-							<option>${k.k_city}</option>
+							<option value="${k.k_city}">${k.k_city}</option>
 						</c:if>
 					</c:forEach>
 				</select><br> 제목 : <input type="text" name="subject"> <br>
