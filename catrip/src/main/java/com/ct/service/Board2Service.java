@@ -1,9 +1,11 @@
 package com.ct.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ct.domain.BoardVO;
 import com.ct.domain.PageVO;
+import com.ct.domain.PartyVO;
 
 public interface Board2Service {
 
@@ -33,4 +35,16 @@ public interface Board2Service {
 		
 		// 글 삭제하기
 		public void deleteBoard1(int b_bno) throws Exception;
+		
+		// 신청하기
+		public void apply0(Map<String, Object> data) throws Exception;
+		
+		// 신청자 목록
+		public List<PartyVO> apply(int b_bno);
+		
+		// 승인
+		public void read0Apply(Map<String, Object> data);
+		
+		// 인원수 증가
+		public void boardUpdate(int b_bno);
 }

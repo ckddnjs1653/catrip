@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ct.controller.MainController;
 import com.ct.domain.BoardVO;
@@ -51,8 +52,6 @@ public class MainController {
 	// http://localhost:8080/main
 	@RequestMapping(value = "/main" ,method = RequestMethod.GET)
 	public String mainGET(HttpSession session) {
-	   
-		
 		
 		MemberVO memberVO = (MemberVO) session.getAttribute("id");
 		
@@ -300,8 +299,10 @@ public class MainController {
 		String id = mvo.getId();
 		logger.debug("글쓰기 테스트POST 22222 @@@@ : " + id);
 		
+		logger.debug("maxPerson@@@@@@@@@@@ : " + vo.getMaxPerson());
 		logger.debug("!!!!!!@@@@@@@@@@@@@@@@@@@@@"+vo.getSubject());
 		logger.debug("!!!!!!@@@@@@@@@@@@@@@@@@@@@"+vo.getT_name());
+		logger.debug("!!!!!!@@@@@@@@@@@@@@@@@@@@@"+vo.getT_city());
 		logger.debug("!!!!!!@@@@@@@@@@@@@@@@@@@@@"+vo.getK_city());
 		logger.debug("!!!!!!@@@@@@@@@@@@@@@@@@@@@"+id);
 		
@@ -435,16 +436,57 @@ public class MainController {
 			
 		bService.updateCnt(b_bno);
 		bService.read1Board(b_bno);
+		b2Service.apply(b_bno);
 		
 		model.addAttribute("b_bno", bService.read1Board(b_bno));
+		model.addAttribute("apply", b2Service.apply(b_bno));
 		
 	}
 	
 	// 신청하기 팝업
 	@RequestMapping(value = "/apply0", method = RequestMethod.GET)
-	public void apply0() throws Exception {
-		logger.debug("신청하기 apply0 팝업띄우기");
+	public void apply0(@RequestParam("b_bno") int b_bno) throws Exception {
+		logger.debug(b_bno + " 글 신청하기 apply0 팝업띄우기");
 	}
+	
+	// 신청하기(POST)
+	@RequestMapping(value = "/apply0", method = RequestMethod.POST)
+	public String apply0POST(HttpSession session, Model model, @RequestParam("intro_title") String intro_title, 
+						   @RequestParam("intro_content") String intro_content, 
+						   @RequestParam("b_bno") int b_bno) throws Exception {
+		logger.debug("신청하기 apply0POST 컨트롤러");
+		
+		MemberVO mvo = (MemberVO)session.getAttribute("id");
+		String id = mvo.getId();
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("intro_title", intro_title);
+		data.put("intro_content", intro_content);
+		data.put("id", id);
+		data.put("b_bno", b_bno);
+		
+		b2Service.apply0(data);
+		
+		return "/apply0";
+	}
+	
+	// 승인하기
+	@RequestMapping(value = "/read0", method = RequestMethod.POST)
+	public void read0Apply(@RequestParam("id") String id, @RequestParam("b_bno") int b_bno) throws Exception{
+		logger.debug("승인1 : " +id);
+		logger.debug("승인2 : " +b_bno);
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("id", id);
+		data.put("b_bno", b_bno);
+		
+		b2Service.read0Apply(data);
+		b2Service.boardUpdate(b_bno);
+		
+	}
+	
+	
+	
 	// ============================ 해외 게시판 - 끝 ==============================================
 
 
