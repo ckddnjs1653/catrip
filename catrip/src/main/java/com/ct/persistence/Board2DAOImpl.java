@@ -2,6 +2,7 @@ package com.ct.persistence;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ct.domain.BoardVO;
 import com.ct.domain.PageVO;
+import com.ct.domain.PartyVO;
 
 @Repository
 public class Board2DAOImpl implements Board2DAO{
@@ -31,12 +33,13 @@ public class Board2DAOImpl implements Board2DAO{
 		}
 		
 		//게시판 목록 갯수
-			@Override
-			public int count() throws Exception {
-				
-				logger.debug("검색어xxxxxxxxxxxxxx");
-				return SqlSession.selectOne(NAMESPACE+".0count");
-			}
+		@Override
+		public int count() throws Exception {
+			
+			logger.debug("검색어xxxxxxxxxxxxxx");
+			
+			return SqlSession.selectOne(NAMESPACE+".0count");
+		}
 		
 		// 게시판 글 목록 조회 (+검색어)
 		@Override
@@ -53,14 +56,15 @@ public class Board2DAOImpl implements Board2DAO{
 		}
 		
 		//게시판 목록 갯수(+검색어)
-			@Override
-			public int count(BoardVO vo) throws Exception {
-				
-				HashMap<String, Object> data = new HashMap<String, Object>();
-				data.put("subject", vo.getSubject());
-				logger.debug("검색어ooooooooooo" + vo.getSubject());
-				return SqlSession.selectOne(NAMESPACE+".0count1",data);
-			}
+		@Override
+		public int count(BoardVO vo) throws Exception {
+			
+			HashMap<String, Object> data = new HashMap<String, Object>();
+			data.put("subject", vo.getSubject());
+			logger.debug("검색어ooooooooooo" + vo.getSubject());
+			
+			return SqlSession.selectOne(NAMESPACE+".0count1",data);
+		}
 		
 		// 글쓰기
 		@Override
@@ -81,7 +85,7 @@ public class Board2DAOImpl implements Board2DAO{
 		@Override
 		public BoardVO read1Board(int b_bno) throws Exception {
 			
-			return SqlSession.selectOne(NAMESPACE+".0getBoard1",b_bno);
+			return SqlSession.selectOne(NAMESPACE+".0getBoard1", b_bno);
 		}
 
 		// 글 조회수 증가
@@ -103,7 +107,39 @@ public class Board2DAOImpl implements Board2DAO{
 		@Override
 		public void deleteBoard1(int b_bno) throws Exception {
 			
-			SqlSession.delete(NAMESPACE+".0delete1",b_bno);
+			SqlSession.delete(NAMESPACE+".0delete1", b_bno);
 			
 		}
+
+		@Override
+		public void apply0(Map<String, Object> data) throws Exception {
+			
+			SqlSession.delete(NAMESPACE+".apply0POST", data);
+			
+		}
+		
+		// 신청자 목록
+		@Override
+		public List<PartyVO> apply(int b_bno) {
+			return SqlSession.selectList(NAMESPACE+".0apply", b_bno);
+			
+		}
+
+		// 승인
+		@Override
+		public void read0Apply(Map<String, Object> data) {
+			int result  = SqlSession.update(NAMESPACE+".read0Apply", data);
+			
+			if(result != 0) {
+				logger.debug("승인 완료");
+			}
+		}
+
+		@Override
+		public void boardUpdate(int b_bno) {
+			SqlSession.update(NAMESPACE+".boardUpdate", b_bno);
+		}
+		
+		
+		
 }

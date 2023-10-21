@@ -1,6 +1,7 @@
 package com.ct.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.ct.domain.BoardVO;
 import com.ct.domain.PageVO;
+import com.ct.domain.PartyVO;
 import com.ct.persistence.Board2DAO;
 
 @Service
@@ -84,4 +86,31 @@ public class Board2ServiceImpl implements Board2Service {
 
 			b2dao.deleteBoard1(b_bno);
 		}
+
+		@Override
+		public void apply0(Map<String, Object> data) throws Exception {
+			
+			b2dao.apply0(data);
+			
+		}
+
+		@Override
+		public List<PartyVO> apply(int b_bno) {
+			
+			return b2dao.apply(b_bno);
+			
+		}
+
+		@Override
+		public void read0Apply(Map<String, Object> data) {
+			b2dao.read0Apply(data);
+		}
+
+		@Override
+		public void boardUpdate(int b_bno) {
+			b2dao.boardUpdate(b_bno);
+		}
+		
+		
+		
 }

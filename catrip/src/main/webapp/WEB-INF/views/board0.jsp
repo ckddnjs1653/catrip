@@ -23,8 +23,10 @@
 	<table border="1">
 		<tr>
 		<th>번호</th>
+		<th>나라</th>
+		<th>도시</th>
 		<th>제목</th>
-		<th>내용</th>
+		<th>인원수</th>
 		<th>조회</th>
 		<th>등록일</th>
 		</tr>
@@ -32,8 +34,10 @@
 		<c:if test="${bd.HM_ABR == '해외'}">
 			<tr>
 				<td>${bd.b_bno }</td>
+				<td>${bd.t_name }</td>
+				<td>${bd.t_city }</td>
 				<td><a href="/read0?v=0&b_bno=${bd.b_bno}">${bd.subject }</a></td>
-				<td>${bd.content }</td>
+				<td>${bd.personNum }/${bd.maxPerson }</td>
 				<td>${bd.cnt }</td>
 				<td>${bd.b_regdate }</td>
 			</tr>

@@ -253,8 +253,8 @@
   	
   	<!-- 글쓰기 -->
 	<insert id="0regist1">
-		insert into board(subject, content,t_name,t_city, HM_ABR ,id)
-		values(#{vo.subject}, #{vo.content},#{vo.t_name},#{vo.t_city} "해외",#{id})
+		insert into board(subject, content, t_name, t_city, HM_ABR, id, maxPerson)
+		values(#{vo.subject}, #{vo.content},#{vo.t_name},#{vo.t_city}, "해외", #{id}, #{vo.maxPerson})
 	</insert>
 	<!-- 글쓰기 -->
   	
@@ -287,7 +287,36 @@
 		where b_bno = #{b_bno}
 	</delete>
 	<!-- 글 삭제하기 -->
+	
+	<!-- 신청하기 -->
+	<insert id="apply0POST">
+		insert into party(id, intro_title, intro_content, b_bno)
+		value(#{id}, #{intro_title}, #{intro_content}, #{b_bno})
+	</insert>
+	<!-- 신청하기 -->
+	
+	<!-- 신청자 목록 -->
+	<select id="0apply" resultType="com.ct.domain.PartyVO">
+		select * from party
+		where b_bno = #{b_bno}
+	</select>
+	<!-- 신청자 목록 -->
 
+	<!-- 승인 --> 
+	<update id="read0Apply">
+		update party
+		set apply = 1
+		where id = #{id} and b_bno = #{b_bno}
+	</update>
+	<!-- 승인 -->
+	
+	<!-- 인원수 증가 -->
+	<update id="boardUpdate">
+		update board
+		set personNum = personNum+1
+		where b_bno = #{b_bno}
+	</update>
+	<!-- 인원수 증가 -->
 
 
 	<!-- //////////////////// 해외 ////////////////////////////////////////// -->
